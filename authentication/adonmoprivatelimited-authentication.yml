@@ -1,0 +1,66 @@
+generated: '2026-09-07'
+method: probed
+source: 'openapi/adonmoprivatelimited-adonmo-api.json (which declares no securitySchemes)
+  plus live unauthenticated probes of https://api.adonmo.com/ops_portal/api/spots and
+  /ops_portal/api/spot/{uuid} on 2026-09-07'
+api: Adonmo API
+summary: 'The published OpenAPI document declares NO components.securitySchemes and NO
+  security requirement on either operation, so the contract itself is silent on
+  authentication. The live API is not: every operation is protected, and the mechanism
+  was established by probing rather than read from the spec. This is a real contract gap
+  — an agent reading only the spec would conclude the API is anonymous.'
+spec_declares_auth: false
+schemes:
+- id: bearer_access_token
+  type: http
+  scheme: bearer
+  in: header
+  name: Authorization
+  method: probed
+  description: 'A bearer access token supplied in the standard HTTP Authorization header.
+    Adonmo names the credential "access_token" in its error envelope. Not declared in the
+    OpenAPI document; inferred from live response behaviour.'
+  evidence:
+    no_credential:
+      request: 'GET https://api.adonmo.com/ops_portal/api/spots?page=1&page_size=1'
+      status: 400
+      body: '{"errors":["access_token is required."]}'
+    bad_credential:
+      request: 'GET https://api.adonmo.com/ops_portal/api/spots?page=1&page_size=1 with
+        header Authorization: Bearer <invalid>'
+      status: 401
+      body: 'HTML "401 Unauthorized" (Werkzeug/Flask default error page)'
+placements_ruled_out:
+  note: 'Each of these was probed and still returned the 400 "access_token is required"
+    envelope, so none of them is the credential channel.'
+  placements:
+  - placement: query parameter access_token
+    status: 400
+  - placement: request header access_token
+    status: 400
+  - placement: request header X-Access-Token
+    status: 400
+  - placement: cookie access_token
+    status: 400
+oauth2: false
+oauth_scopes: false
+scopes_artifact: 'not applicable — no oauth2 securityScheme is declared and no OAuth
+  documentation was found, so scopes/ is deliberately absent rather than empty'
+mtls: false
+openid_connect: false
+token_acquisition:
+  documented: false
+  note: 'No public documentation was found describing how a developer obtains an access
+    token. There is no developer signup, no key-issuance page, and no self-service
+    credential surface on any Adonmo host. The Swagger UI at https://api.adonmo.com/apidocs/
+    renders with auth_config unset, so it offers no Authorize control either. Access
+    appears to be provisioned internally or to contracted partners.'
+error_envelope:
+  shape: '{"errors": ["<message>", ...]}'
+  content_type: application/json
+  note: 'A non-RFC-9457 array-of-strings envelope. See errors/adonmoprivatelimited-problem-types.yml.'
+docs: https://api.adonmo.com/apidocs/
+gaps:
+- 'securitySchemes are absent from the OpenAPI document even though the API enforces
+  authentication on every operation.'
+- 'No documented token-acquisition flow, so an integrator cannot self-serve.'

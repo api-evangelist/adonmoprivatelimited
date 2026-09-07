@@ -1,0 +1,27 @@
+generated: '2026-09-07'
+method: generated
+source: 'openapi/adonmoprivatelimited-adonmo-api.json, grounded in the two real
+  operationIds the contract publishes, plus the probed conventions and error behaviour in
+  this repository'
+api: Adonmo API
+note: 'Adonmo publishes no skills, no AGENTS.md, and no agent-facing documentation. These
+  two skills are GENERATED from the published contract. Every operationId referenced was
+  read from the spec; none is invented. The surface is small because the contract is
+  small — two operations.'
+skill_count: 2
+skills:
+- name: adonmo-list-spots
+  file: skills/adonmoprivatelimited-list-spots.md
+  description: 'Page through Acumen ops-portal spot records, with search and status
+    filtering.'
+  operations:
+  - listSpots
+  read_only: true
+- name: adonmo-delete-spot
+  file: skills/adonmoprivatelimited-delete-spot.md
+  description: 'Delete a spot record by uuid. Destructive and irreversible; the skill
+    carries an explicit confirmation gate.'
+  operations:
+  - deleteSpot
+  read_only: false
+  destructive: true

@@ -1,0 +1,79 @@
+generated: '2026-09-07'
+method: derived
+source: openapi/adonmoprivatelimited-adonmo-api.json
+status: candidate
+summary: 'Adonmo publishes NO MCP server. Searches of the provider surface and the
+  github.com/adonmo organization found none, and no MCP endpoint responded on any Adonmo
+  host. The tools below are a CANDIDATE mapping derived from the two operations in the
+  published OpenAPI document — they describe what an MCP server for this API could expose,
+  not something Adonmo ships.'
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: api-key
+  verified: derived
+  note: 'mode is none because nobody ships a server. auth records what such a server would
+    need — the Adonmo API requires a bearer access token on every operation. No endpoint
+    URL is guessed here.'
+search_evidence:
+- surface: https://github.com/adonmo
+  result: 'No MCP server repository among the 16 public repositories.'
+- surface: https://api.adonmo.com/apidocs/
+  result: 'Swagger UI only; no MCP reference.'
+- surface: 'adonmo.com, acumencms.com, book.adonmo.com, console.acumencms.com'
+  result: 'No MCP endpoint, manifest, or documentation found.'
+tools:
+- name: list_spots
+  description: 'List Acumen ops-portal spot records with pagination, free-text search and
+    a status filter.'
+  rest_operation_id: listSpots
+  method: GET
+  path: /ops_portal/api/spots
+  read_only: true
+  input_schema_source: 'derived verbatim from the operation parameters in the OpenAPI
+    document'
+  input_schema:
+    type: object
+    properties:
+      page:
+        type: integer
+        minimum: 1
+        description: Page number
+      page_size:
+        type: integer
+        minimum: 1
+        maximum: 10000
+        description: Page size
+      search:
+        type: string
+        description: Search query
+      status:
+        type: string
+        description: Status
+    required:
+    - page
+    - page_size
+  output_schema: 'unknown — the 200 response references #/definitions/SpotListSchema,
+    which is not defined in the document'
+- name: delete_spot
+  description: 'Delete a spot record by uuid.'
+  rest_operation_id: deleteSpot
+  method: DELETE
+  path: /ops_portal/api/spot/{uuid}
+  read_only: false
+  destructive: true
+  reversible: false
+  reversibility_note: 'No reversal operation is published. See
+    conventions/adonmoprivatelimited-conventions.yml reversibility block.'
+  input_schema:
+    type: object
+    properties:
+      uuid:
+        type: string
+        description: Identifier of the spot record to delete
+    required:
+    - uuid
+  output_schema: 'none — 204 No Content'
+tool_count: 2

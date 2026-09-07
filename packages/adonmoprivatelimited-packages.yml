@@ -1,0 +1,126 @@
+generated: '2026-09-07'
+method: searched
+source: 'https://github.com/adonmo (16 public repositories) cross-checked against
+  registry.npmjs.org, pypi.org/pypi/<pkg>/json and proxy.golang.org on 2026-09-07'
+summary: 'Adonmo publishes real, first-party open-source libraries under the github.com/adonmo
+  organization, several of them to public registries. NONE of them is a client SDK for the
+  Adonmo API. They are general-purpose engineering libraries — spatiotemporal/mobility data
+  handling, Android media and MQTT, Go tooling — released from Adonmo''s platform work. For
+  that reason NO SDKs pointer is emitted in apis.yml: sdk_count measures client libraries
+  for the provider''s own API, and awarding it here would credit Adonmo with a developer
+  surface it does not ship.'
+api_client_sdk_count: 0
+official_package_count: 6
+packages:
+- name: mobilitydb-sqlalchemy
+  registry: pypi
+  url: https://pypi.org/project/mobilitydb-sqlalchemy/
+  repository: https://github.com/adonmo/mobilitydb-sqlalchemy
+  language: python
+  official: true
+  api_client: false
+  description: MobilityDB extensions for SQLAlchemy
+  version: '0.4'
+  published: '2020-09-02'
+  note: 'Last released 2020-09-02 — over five years stale.'
+- name: trajectory
+  registry: pypi
+  url: https://pypi.org/project/trajectory/
+  repository: https://github.com/adonmo/trajectory
+  language: python
+  official: true
+  api_client: false
+  description: 'Lossy compression/serialization of trajectory data based on Google''s
+    Encoded Polyline Algorithm Format'
+  version: 0.1.1
+  published: '2020-02-24'
+  note: 'Last released 2020-02-24 — over six years stale.'
+- name: trajectory.js
+  registry: npm
+  url: https://www.npmjs.com/package/trajectory.js
+  repository: https://github.com/adonmo/trajectory.js
+  language: javascript
+  official: true
+  api_client: false
+  description: 'JavaScript sibling of the trajectory compression library'
+  version: 0.1.2
+  published: '2020-06-11'
+  note: 'Last released 2020-06-11 — over six years stale.'
+- name: github.com/adonmo/aws-sso-lib-go
+  registry: go
+  url: https://pkg.go.dev/github.com/adonmo/aws-sso-lib-go
+  repository: https://github.com/adonmo/aws-sso-lib-go
+  language: go
+  official: true
+  api_client: false
+  description: Go library for AWS SSO
+  version: v0.4.0
+  published: '2026-03-27'
+  note: 'The only currently-maintained package in the set — tagged v0.4.0 in March 2026.'
+- name: github.com/adonmo/adonmogocommons
+  registry: go
+  url: https://pkg.go.dev/github.com/adonmo/adonmogocommons
+  repository: https://github.com/adonmo/adonmogocommons
+  language: go
+  official: true
+  api_client: false
+  description: Shared Go utilities used across Adonmo services
+  version: v1.2.1
+  published: '2021-08-12'
+- name: github.com/adonmo/goroom
+  registry: go
+  url: https://pkg.go.dev/github.com/adonmo/goroom
+  repository: https://github.com/adonmo/goroom
+  language: go
+  official: true
+  api_client: false
+  description: An embedded data store version manager
+  version: v0.0.0-20200630143748-40809a17f82b
+  published: '2020-06-30'
+  note: 'Never tagged a semver release; the Go module proxy only has a pseudo-version.'
+source_only_projects:
+- name: killerbee
+  repository: https://github.com/adonmo/killerbee
+  language: kotlin
+  description: MQTT Android client
+  registry: null
+  version: null
+  published: null
+  note: 'No public Maven/Gradle artifact was found; distributed as source only, so there is
+    no registry metadata endpoint to read a version from.'
+- name: meos
+  repository: https://github.com/adonmo/meos
+  language: cpp
+  description: 'Mobility Engine, Open Source — C++ library, Adonmo''s most-starred project'
+  registry: null
+  version: null
+  published: null
+  note: 'C++ source distribution; no package registry. Not to be confused with the PyMEOS
+    PyPI package, which is published by the separate MobilityDB organization, NOT Adonmo.'
+- name: daylight
+  repository: https://github.com/adonmo/daylight
+  language: cpp
+  description: Sunrise/sunset and daylight calculations
+  registry: null
+  version: null
+  published: null
+- name: jmeos
+  repository: https://github.com/adonmo/jmeos
+  language: java
+  description: Proof of concept for using MEOS from Java
+  registry: null
+  version: null
+  published: null
+excluded:
+- name: pymeos
+  reason: 'Published on PyPI by the MobilityDB organization, not Adonmo. Ownership check
+    failed, so it is not recorded as an Adonmo package.'
+- name: perspective.ts
+  reason: 'A FORK in the adonmo org, not first-party work, and not published to npm under
+    Adonmo.'
+- name: androidx-media
+  reason: 'A fork of the Google Jetpack Media3 libraries.'
+findings:
+- 'Adonmo ships no client SDK for its own API in any language.'
+- 'Five of six registry-published packages have not shipped a release since 2021 or
+  earlier; the open-source estate is largely dormant.'

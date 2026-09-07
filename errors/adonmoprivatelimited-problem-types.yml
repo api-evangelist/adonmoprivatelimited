@@ -1,0 +1,70 @@
+generated: '2026-09-07'
+method: probed
+source: 'openapi/adonmoprivatelimited-adonmo-api.json (4xx/5xx responses) plus live
+  unauthenticated probes of https://api.adonmo.com on 2026-09-07'
+api: Adonmo API
+format: custom
+rfc9457: false
+envelope:
+  content_type: application/json
+  shape: '{"errors": ["<human readable message>", ...]}'
+  fields:
+  - name: errors
+    type: array of string
+    description: 'One or more human-readable error messages. There is no machine-readable
+      code, no type URI, no title/detail split, and no per-field association — an agent
+      can only string-match the message.'
+  example: '{"errors":["access_token is required."]}'
+spec_coverage:
+  note: 'The published OpenAPI document declares NO 4xx or 5xx responses on either
+    operation — only 200 on listSpots and 204 on deleteSpot. Every error type below was
+    observed live, not read from the contract.'
+  documented_error_responses: 0
+  observed_error_responses: 3
+problem_types:
+- id: missing-access-token
+  status: 400
+  message: 'access_token is required.'
+  method: probed
+  operations:
+  - listSpots
+  - deleteSpot
+  cause: 'No bearer credential was supplied in the Authorization header.'
+  remediation: 'Send Authorization: Bearer <access_token>. Note that Adonmo returns 400,
+    not 401, for a wholly absent credential.'
+  evidence: 'GET https://api.adonmo.com/ops_portal/api/spots?page=1&page_size=1 -> 400'
+  documented_in_spec: false
+- id: unauthorized
+  status: 401
+  message: 'Unauthorized — "The server could not verify that you are authorized to access
+    the URL requested."'
+  method: probed
+  operations:
+  - listSpots
+  - deleteSpot
+  cause: 'An Authorization header was supplied but the credential is invalid or expired.'
+  remediation: 'Obtain a valid access token from Adonmo. There is no public
+    token-issuance surface.'
+  evidence: 'GET https://api.adonmo.com/ops_portal/api/spots with Authorization: Bearer
+    <invalid> -> 401'
+  content_type: 'text/html — the Werkzeug/Flask default error page, NOT the JSON errors
+    envelope. The API is inconsistent: 400 is JSON, 401 is HTML.'
+  documented_in_spec: false
+- id: not-found
+  status: 404
+  message: '404 Not Found'
+  method: probed
+  operations: []
+  cause: 'No route matches the requested path on api.adonmo.com.'
+  remediation: 'Check the path against https://api.adonmo.com/apidocs/.'
+  evidence: 'GET https://api.adonmo.com/ -> 404 {"error":"404 Not Found"}'
+  content_type: application/json
+  note: 'The 404 envelope uses a SINGULAR string key "error", while the 400 envelope uses
+    a PLURAL array key "errors". Two different error shapes on the same host.'
+  documented_in_spec: false
+gaps:
+- 'No 4xx/5xx responses are declared anywhere in the OpenAPI document.'
+- 'Three different error representations coexist: {"errors":[...]} JSON, {"error":"..."}
+  JSON, and an HTML Werkzeug page.'
+- 'Errors carry no stable machine-readable code, so clients must match on prose.'
+- 'A missing credential returns 400 where 401 is the conventional status.'

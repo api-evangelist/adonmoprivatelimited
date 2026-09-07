@@ -1,0 +1,95 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Adonmo API
+  version: 1.0.0
+extends: ../openapi/adonmoprivatelimited-adonmo-api.json
+x-generated: '2026-09-07'
+x-method: derived
+x-source: 'Enhancements derived from live probes of https://api.adonmo.com on 2026-09-07
+  and from the artifacts in this repository. The original contract is never mutated; every
+  change we would make is expressed here as an Overlay action.'
+actions:
+- target: $.info
+  description: 'Correct info.termsOfService, which points at a 404 PDF and names a privacy
+    policy rather than terms of service.'
+  update:
+    termsOfService: https://adonmo.com/terms-of-service/
+    x-original-termsOfService: https://www.adonmo.com/policies/privacy-policy.pdf
+    x-original-termsOfService-status: 404
+- target: $
+  description: 'Add the servers block the document omits. The host was confirmed by
+    fetching the spec from it and by calling both operations against it.'
+  update:
+    servers:
+    - url: https://api.adonmo.com
+      description: Production
+      x-verified: probed 2026-09-07
+- target: $
+  description: 'Declare the securityScheme the API actually enforces. The published
+    document declares none, so a reader concludes the API is anonymous; it is not.'
+  update:
+    components:
+      securitySchemes:
+        bearerAccessToken:
+          type: http
+          scheme: bearer
+          description: 'Bearer access token in the Authorization header. Adonmo names the
+            credential "access_token". Absence returns 400; an invalid value returns 401.
+            Established by probing, not published by the provider.'
+    security:
+    - bearerAccessToken: []
+- target: $
+  description: 'Declare the tag the operations already reference, so it is not an
+    undeclared tag.'
+  update:
+    tags:
+    - name: acumen
+      description: 'Acumen CMS ops-portal resources. Acumen CMS is Adonmo''s digital
+        signage content management product (https://acumencms.com).'
+- target: $.paths['/ops_portal/api/spots'].get.responses
+  description: 'Document the error responses observed live. The contract declares none.'
+  update:
+    '400':
+      description: 'Missing credential. Body: {"errors":["access_token is required."]}'
+    '401':
+      description: 'Invalid or expired access token. Returns an HTML Werkzeug error page,
+        not the JSON error envelope.'
+- target: $.paths['/ops_portal/api/spot/{uuid}'].delete.responses
+  description: 'Document the error responses observed live, and the missing path
+    parameter.'
+  update:
+    '400':
+      description: 'Missing credential. Body: {"errors":["access_token is required."]}'
+    '401':
+      description: 'Invalid or expired access token.'
+- target: $.paths['/ops_portal/api/spot/{uuid}'].delete
+  description: 'The uuid path parameter is used in the path template but never declared in
+    a parameters array.'
+  update:
+    parameters:
+    - name: uuid
+      in: path
+      required: true
+      description: Identifier of the spot record to delete.
+      schema:
+        type: string
+        format: uuid
+    x-destructive: true
+    x-reversible: false
+    x-reversal-note: 'No restore or undelete operation is published, and no recovery
+      window is stated by the provider.'
+- target: $.paths['/ops_portal/api/spots'].get.parameters[?(@.name=='page')].schema
+  description: 'The parameter schemas use type "int", which is not a JSON Schema type. The
+    correct type is "integer".'
+  update:
+    type: integer
+- target: $.paths['/ops_portal/api/spots'].get.parameters[?(@.name=='page_size')].schema
+  description: 'Same invalid "int" type on page_size.'
+  update:
+    type: integer
+x-unresolved:
+- issue: 'paths./ops_portal/api/spots.get.responses.200.schema references
+    #/definitions/SpotListSchema, but definitions is empty. The success response body of
+    the only read operation in the API is undefined.'
+  action: 'NOT repaired by this overlay. The schema is unknown, and inventing one would
+    fabricate a contract. This needs to be fixed by Adonmo.'

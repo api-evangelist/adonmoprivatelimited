@@ -1,0 +1,84 @@
+generated: '2026-09-07'
+method: derived
+source: 'openapi/adonmoprivatelimited-adonmo-api.json, live probes of https://api.adonmo.com,
+  and searches of adonmo.com and acumencms.com for compliance and standards claims
+  (2026-09-07)'
+api: Adonmo API
+summary: 'Adonmo asserts no standards conformance and no compliance certification anywhere
+  on its public surface. The contract itself is a hybrid document that does not validate
+  cleanly against the OpenAPI version it declares. NO Compliance pointer is emitted in
+  apis.yml, because no certification or compliance program was found.'
+conformance:
+- id: openapi-3.0
+  conforms: false
+  evidence: 'https://api.adonmo.com/adonmo_apispec.json declares "openapi": "3.0.0" but
+    carries a null "swagger" key, a top-level "definitions" object, Swagger 2.0
+    "consumes"/"produces" keywords on both operations, and a Swagger 2.0-style
+    "schema" directly under a response rather than under "content". It is a
+    Flasgger-emitted hybrid of Swagger 2.0 and OpenAPI 3.0, not a valid OpenAPI 3.0.0
+    document.'
+  note: 'Parses as JSON and is usable, but a strict OpenAPI 3.0 validator rejects it.'
+- id: rfc9457
+  conforms: false
+  evidence: 'Errors are returned as {"errors":["..."]} with content-type application/json,
+    not application/problem+json. See errors/adonmoprivatelimited-problem-types.yml.'
+- id: oauth2
+  conforms: false
+  evidence: 'No oauth2 securityScheme is declared and no OAuth documentation exists.
+    /.well-known/oauth-authorization-server returns 404 on api.adonmo.com.'
+- id: oidc
+  conforms: false
+  evidence: '/.well-known/openid-configuration returns 404 on adonmo.com and
+    api.adonmo.com.'
+- id: bearer-auth
+  conforms: true
+  evidence: 'The API accepts a credential in the standard HTTP Authorization header and
+    returns 401 on an invalid one — probed 2026-09-07. This is the one interoperable
+    convention the API genuinely follows, though it is undeclared in the contract.'
+- id: pagination
+  conforms: true
+  evidence: 'listSpots implements conventional page/page_size number pagination with
+    documented minimum and maximum bounds.'
+  note: 'The response envelope is undefined, so a client cannot read total counts or
+    next-page state.'
+- id: idempotency
+  conforms: false
+  evidence: 'No idempotency mechanism. See conventions/adonmoprivatelimited-conventions.yml
+    idempotency.coverage: none.'
+- id: json-api
+  conforms: false
+  evidence: 'No JSON:API media type or document structure.'
+- id: odata
+  conforms: false
+  evidence: 'No $metadata surface; /schema returns 404 on api.adonmo.com.'
+- id: scim
+  conforms: false
+  evidence: 'No SCIM schema URN appears in the contract and no /scim endpoint responds.'
+domain_standards:
+  market: Digital out-of-home (DOOH) / programmatic advertising
+  detected: false
+  note: 'REWARD-ONLY CHECK, NOT SATISFIED AND NOT PENALISED. The adtech/DOOH market does
+    have candidate standards — IAB Tech Lab OpenRTB (including the DOOH extensions),
+    the OpenOOH venue-type taxonomy, and DPAA measurement guidelines — and adonmo.com
+    describes AdServe as a "programmatic platform". But the published contract declares
+    none of them: there is no bid endpoint, no OpenRTB object, no venue-taxonomy field,
+    and the AdServe page itself contains no reference to OpenRTB, SSP/DSP integration, or
+    real-time bidding. Nothing is asserted here that the provider does not publish.'
+  candidates_probed:
+  - id: openrtb
+    conforms: false
+    evidence: 'No bid request/response endpoint or OpenRTB object in
+      https://api.adonmo.com/adonmo_apispec.json; https://adonmo.com/adserve/ names no
+      programmatic protocol.'
+  - id: openooh-venue-taxonomy
+    conforms: false
+    evidence: 'No venue-type field or taxonomy reference in the contract.'
+  scoring_regime: 'No advertising regime exists in the API Evangelist scoring.yml
+    industry_regulatory map, so no regime-specific standards shortlist applies to this
+    provider.'
+certifications:
+  published: []
+  detail: 'No SOC 2, ISO 27001, PCI DSS, HIPAA, FedRAMP or equivalent certification is
+    claimed on any Adonmo host. No trust center exists — see
+    security/adonmoprivatelimited-trust-center.yml absence recorded by
+    probe-security-programs.py (trust=none).'

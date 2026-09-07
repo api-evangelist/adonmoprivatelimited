@@ -1,18 +1,61 @@
 aid: adonmoprivatelimited
-name: Adonmoprivatelimited
-description: 'Adonmoprivatelimited is a company surfaced via the API Evangelist harvest backlog (source:
-  secondary-market) and added to the network as a stub for full-pipeline profiling.'
+name: Adonmo Private Limited
+description: 'Adonmo Private Limited (AdOnMo) is a Hyderabad, India based ambient digital
+  out-of-home (DOOH) advertising company, incorporated in 2016, that operates what it
+  describes as India''s largest ambient DOOH network — 66,000+ smart digital screens
+  across 27+ Indian cities in residential lobbies, corporate offices, gyms, malls and
+  transit environments, reaching a claimed 12M+ daily viewers. The company sells campaigns
+  through its AdServe programmatic platform and a self-serve booking portal, and it
+  operates the screens themselves with Acumen CMS, its digital-signage content management
+  product. Adonmo publishes a small first-party OpenAPI 3.0.0 contract, "Adonmo API",
+  from a Flasgger-backed Swagger UI on its production API host.'
+image: https://adonmo.com/icon-512.png
 url: https://raw.githubusercontent.com/api-evangelist/adonmoprivatelimited/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-09-07'
 modified: '2026-09-07'
 tags:
+- Advertising
+- Digital Out-of-Home
+- DOOH
+- Digital Signage
+- AdTech
+- Content Management
+- Marketing
+- India
 - Company
-apis: []
+apis:
+- aid: adonmoprivatelimited-adonmo-api
+  name: Adonmo API
+  description: 'Adonmo''s common API for its portals and services, published as an OpenAPI
+    3.0.0 document behind a Flasgger Swagger UI at https://api.adonmo.com/apidocs/. The
+    publicly served contract exposes two operations against the Acumen ops-portal "spot"
+    resource — a paginated list and a delete. All operations require a bearer access
+    token; anonymous calls return HTTP 400 with an ``access_token is required`` error
+    envelope.'
+  humanURL: https://api.adonmo.com/apidocs/
+  image: https://adonmo.com/icon-512.png
+  baseURL: https://api.adonmo.com
+  position: Producing
+  tags:
+  - Advertising
+  - Digital Signage
+  - DOOH
+  properties:
+  - type: OpenAPI
+    url: openapi/adonmoprivatelimited-adonmo-api.json
+  - type: Overlay
+    url: overlays/adonmoprivatelimited-adonmo-api-overlay.yaml
+  - type: APIReference
+    url: https://api.adonmo.com/apidocs/
+  - type: Authentication
+    url: authentication/adonmoprivatelimited-authentication.yml
+  - type: ErrorCatalog
+    url: errors/adonmoprivatelimited-problem-types.yml
+  - type: DataModel
+    url: data-model/adonmoprivatelimited-data-model.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +63,51 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://equityzen.com/company/adonmoprivatelimited
+  url: https://adonmo.com/
+- type: DeveloperPortal
+  url: https://api.adonmo.com/apidocs/
+- type: Documentation
+  url: https://api.adonmo.com/apidocs/
+- type: APIReference
+  url: https://api.adonmo.com/apidocs/
+- type: GitHubOrganization
+  url: https://github.com/adonmo
+- type: Support
+  url: https://adonmo.com/contact-us/
+- type: Blog
+  url: https://acumencms.com/blog/
+- type: Pricing
+  url: https://acumencms.com/pricing/
+- type: SignUp
+  url: https://console.acumencms.com/login
+- type: TermsOfService
+  url: https://adonmo.com/terms-of-service/
+- type: PrivacyPolicy
+  url: https://adonmo.com/privacy-policy/
+- type: LLMsTxt
+  url: llms/adonmoprivatelimited-llms.txt
+- type: Packages
+  url: packages/adonmoprivatelimited-packages.yml
+- type: Conventions
+  url: conventions/adonmoprivatelimited-conventions.yml
+- type: Conformance
+  url: conformance/adonmoprivatelimited-conformance.yml
+- type: Lifecycle
+  url: lifecycle/adonmoprivatelimited-lifecycle.yml
+- type: DomainSecurity
+  url: security/adonmoprivatelimited-domain-security.yml
+- type: Plans
+  url: plans/adonmoprivatelimited-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/adonmoprivatelimited-rate-limits.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: X-MCPServerCandidate
+  url: mcp/adonmoprivatelimited-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/adonmoprivatelimited-tool-crosswalk.yml
+x-enrichment:
+  date: '2026-09-07'
+  status: enriched
+  artifacts_added: 19
+  pass: local-v3

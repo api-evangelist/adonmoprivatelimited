@@ -1,0 +1,114 @@
+generated: '2026-09-07'
+method: derived
+source: 'openapi/adonmoprivatelimited-adonmo-api.json plus live probes of
+  https://api.adonmo.com on 2026-09-07; no published API convention/style guide exists'
+api: Adonmo API
+auth:
+  style: bearer token in the Authorization header
+  documented: false
+  detail: 'See authentication/adonmoprivatelimited-authentication.yml. The mechanism is
+    NOT declared in the OpenAPI document; it was established by probing.'
+base_url: https://api.adonmo.com
+path_style: 'Portal-scoped resource paths, e.g. /ops_portal/api/spots. The portal name is
+  baked into the path rather than expressed as a version or a tenant parameter.'
+versioning:
+  scheme: none-in-path
+  detail: 'There is no version segment in any published path and no version header. The
+    only version signal is info.version 0.0.1 in the OpenAPI document, which does not
+    appear on the wire.'
+  documented: false
+pagination:
+  style: page-number
+  documented: true
+  detail: 'listSpots takes page and page_size as REQUIRED query parameters. page has
+    minimum 1; page_size has minimum 1 and maximum 10000. There is no documented cursor,
+    no offset/limit alternative, and the response envelope fields are undefined because
+    the referenced schema is missing from the document.'
+  params:
+  - name: page
+    in: query
+    required: true
+    minimum: 1
+  - name: page_size
+    in: query
+    required: true
+    minimum: 1
+    maximum: 10000
+  response_fields: 'unknown — listSpots 200 references #/definitions/SpotListSchema, but
+    the document ships an EMPTY definitions object, so the page envelope is undocumented.'
+filtering:
+  documented: true
+  params:
+  - name: search
+    in: query
+    required: false
+    description: free-text search query
+  - name: status
+    in: query
+    required: false
+    description: status filter; the allowed values are not enumerated in the spec
+field_expansion:
+  supported: false
+  detail: 'No expand, fields, or include parameter is declared.'
+metadata:
+  supported: false
+request_id_tracing:
+  supported: false
+  detail: 'No request-id or correlation-id header is documented, and none was returned on
+    any probed response.'
+error_envelope:
+  shape: '{"errors": ["<message>"]}'
+  detail: 'See errors/adonmoprivatelimited-problem-types.yml. Not RFC 9457.'
+rate_limit_signaling:
+  headers_returned: none
+  detail: 'No X-RateLimit-*, RateLimit-*, or Retry-After header was present on any probed
+    response. See rate-limits/adonmoprivatelimited-rate-limits.yml.'
+content_negotiation:
+  request: application/json
+  response: application/json
+  detail: 'Declared per-operation with the Swagger 2.0 consumes/produces keywords even
+    though the document self-identifies as openapi 3.0.0 — a hybrid the tooling accepted
+    but which is not valid OpenAPI 3.'
+idempotency:
+  coverage: none
+  supported: false
+  header: null
+  scope: []
+  retention: null
+  detail: 'No Idempotency-Key header and no replay-protection mechanism of any kind is
+    documented or observable. The one mutating operation in the published contract,
+    deleteSpot, is a DELETE on a uuid — naturally idempotent by HTTP semantics in that a
+    repeat call cannot delete a second record, but Adonmo publishes no idempotency
+    contract, no key, and no dedupe window. An agent has no way to safely retry a write
+    it is unsure landed. Recorded as none rather than partial: HTTP method semantics are
+    not a provider-published idempotency mechanism.'
+  method: derived
+dry_run_mode:
+  supported: false
+  detail: 'No dry-run, preview, validate-only, or simulation parameter is declared on any
+    operation, and no sandbox environment is published.'
+reversibility:
+  grade: none
+  detail: 'The published contract has exactly one write operation, deleteSpot (DELETE
+    /ops_portal/api/spot/{uuid}), and it is a destructive delete. No restore, undelete,
+    undo, trash, or soft-delete operation exists in the contract, and no documentation
+    anywhere on an Adonmo host states a recovery window. This is NOT recorded as na —
+    a write surface exists — and it is NOT recorded as documented, because no reversal
+    path was found.'
+  write_surfaces:
+  - operation: deleteSpot
+    method: DELETE
+    path: /ops_portal/api/spot/{uuid}
+    consequence: 'Deletes a spot record. Response 204 with no body.'
+    reversal_operation: null
+    reversal_window: null
+    window_source: null
+    note: 'No reversal operation is published. NEVER assume a recovery window here — none
+      is stated by the provider.'
+  method: derived
+cross_links:
+  errors: errors/adonmoprivatelimited-problem-types.yml
+  authentication: authentication/adonmoprivatelimited-authentication.yml
+  lifecycle: lifecycle/adonmoprivatelimited-lifecycle.yml
+  rate_limits: rate-limits/adonmoprivatelimited-rate-limits.yml
+  data_model: data-model/adonmoprivatelimited-data-model.yml

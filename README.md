@@ -64,5 +64,16 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Adonmoprivatelimited is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://equityzen.com/company/adonmoprivatelimited
+Adonmo Private Limited (AdOnMo) is a Hyderabad, India based ambient digital out-of-home (DOOH)
+advertising company, incorporated in 2016. It operates a network of smart digital screens in
+residential lobbies, corporate offices, gyms, malls and transit environments across Indian cities,
+sells campaigns through its AdServe programmatic platform and a self-serve booking portal, and
+runs the screens with Acumen CMS, its digital signage content management product.
+
+Adonmo publishes a small first-party OpenAPI 3.0.0 contract, "Adonmo API", from a Flasgger-backed
+Swagger UI at https://api.adonmo.com/apidocs/ (spec at https://api.adonmo.com/adonmo_apispec.json).
+
+- Website: https://adonmo.com/
+- API reference: https://api.adonmo.com/apidocs/
+- GitHub organization: https://github.com/adonmo
+- Acumen CMS: https://acumencms.com/

@@ -1,0 +1,41 @@
+generated: '2026-09-07'
+method: searched
+source: https://acumencms.com/pricing/
+summary: 'Adonmo publishes pricing for exactly one product — Acumen CMS, its digital
+  signage platform — and it is a single tier. Nothing about API access is priced anywhere.
+  The advertising side of the business (AdServe, the self-serve booking portal, poster
+  frames) publishes no rate card; campaign pricing is quoted through sales or configured
+  inside the booking portal, which requires an account.'
+plan_count: 1
+currency: INR
+plans:
+- name: Platinum
+  product: Acumen CMS
+  price: 500
+  currency: INR
+  billing_period: 30 days
+  included_quota: 'not stated — no screen or user limit is published'
+  overage: 'not stated'
+  features:
+  - Remote content management
+  - Unlimited user access
+  - User management
+  - Screen management
+  limits: []
+  source: https://acumencms.com/pricing/
+enterprise:
+  available: true
+  contact_only: true
+  detail: 'The pricing page directs anything beyond the single Platinum tier to "Talk to
+    Us" or a scheduled demo.'
+api_pricing:
+  published: false
+  detail: 'No plan mentions API access, request quotas, or developer tiers. The Adonmo API
+    has no published commercial terms.'
+related_surfaces:
+- name: Self-serve campaign booking
+  url: https://book.adonmo.com/plans/new
+  status: 200
+  pricing_published: false
+  note: 'A single-page application. Campaign plans are built behind the app rather than
+    listed on a public rate card, so no tiers could be read without an account.'

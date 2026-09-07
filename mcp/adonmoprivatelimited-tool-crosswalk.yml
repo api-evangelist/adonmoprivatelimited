@@ -1,0 +1,48 @@
+generated: '2026-09-07'
+method: derived
+source: 'openapi/adonmoprivatelimited-adonmo-api.json and mcp/adonmoprivatelimited-mcp.yml'
+api: Adonmo API
+summary: 'A crosswalk between the CANDIDATE MCP tool set and the published REST contract.
+  Adonmo ships no MCP server and no GraphQL surface, so every binding here is
+  derived from the OpenAPI document with full confidence in the mapping and zero claim
+  that the tool exists.'
+surfaces:
+  openapi:
+    file: openapi/adonmoprivatelimited-adonmo-api.json
+    url: https://api.adonmo.com/adonmo_apispec.json
+    gated: false
+    note: 'The document itself is anonymously readable; every operation it describes
+      requires a bearer access token.'
+  graphql:
+    endpoint: null
+    present: false
+  mcp:
+    url: null
+    present: false
+    note: 'Candidate only — no server exists.'
+crosswalk:
+- tool: list_spots
+  category: read
+  rest:
+  - listSpots
+  binding: one-to-one
+  confidence: high
+  note: 'The tool inherits the operation''s four query parameters verbatim as its input
+    schema.'
+- tool: delete_spot
+  category: write-destructive
+  rest:
+  - deleteSpot
+  binding: one-to-one
+  confidence: high
+  note: 'Path parameter uuid becomes the sole tool input.'
+mcp_only: []
+rest_only: []
+graphql_only: []
+coverage:
+  rest_operations: 2
+  mcp_tools: 2
+  bound: 2
+  mcp_only: 0
+  rest_only: 0
+  percent_rest_covered: 100

@@ -1,0 +1,60 @@
+generated: '2026-09-07'
+method: probed
+source: 'openapi/adonmoprivatelimited-adonmo-api.json plus searches and live probes of
+  adonmo.com, acumencms.com and api.adonmo.com on 2026-09-07'
+api: Adonmo API
+version:
+  current: 0.0.1
+  source: 'info.version in openapi/adonmoprivatelimited-adonmo-api.json'
+  note: 'A 0.0.x version string on a production API host. Adonmo publishes no statement
+    about what this number means or whether it is maintained.'
+versioning_policy:
+  published: false
+  detail: 'No versioning policy was found. There is no version segment in any path and no
+    version header on the wire.'
+deprecation_policy:
+  published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  detail: 'No deprecation policy, no Sunset or Deprecation response header observed, and
+    no deprecated flag on any operation in the contract. NO Deprecation pointer is emitted
+    in apis.yml, because none exists.'
+deprecated_operations: []
+status_page:
+  published: false
+  url: null
+  detail: 'No status page exists. status.adonmo.com and status.acumencms.com do not
+    resolve in DNS; https://adonmo.com/status/ returns 404. NO StatusPage pointer is
+    emitted in apis.yml.'
+  evidence:
+  - url: https://adonmo.com/status/
+    status: 404
+  - url: https://status.adonmo.com/
+    status: 0
+    result: NXDOMAIN
+changelog:
+  published: false
+  url: null
+  detail: 'No API changelog was found. https://acumencms.com/changelog/ returns 404. The
+    Acumen CMS blog is marketing content, not a dated release log, so it is wired as Blog
+    and NOT as ChangeLog.'
+  evidence:
+  - url: https://acumencms.com/changelog/
+    status: 404
+sla:
+  published: false
+  detail: 'No service level agreement or uptime commitment was found on any Adonmo host.'
+support:
+  url: https://adonmo.com/contact-us/
+  email: dev@adonmo.com
+  email_source: 'info.contact.email in the OpenAPI document'
+  product_email: acumen@adonmo.com
+terms_of_service:
+  url: https://adonmo.com/terms-of-service/
+  status: 200
+  spec_declared_url: https://www.adonmo.com/policies/privacy-policy.pdf
+  spec_declared_status: 404
+  defect: 'The OpenAPI document''s info.termsOfService points at a PDF that returns 404,
+    and it points at a PRIVACY POLICY rather than terms of service. The live terms page
+    at https://adonmo.com/terms-of-service/ is the correct surface.'

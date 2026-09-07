@@ -1,0 +1,49 @@
+generated: '2026-09-07'
+method: derived
+source: openapi/adonmoprivatelimited-adonmo-api.json
+api: Adonmo API
+summary: 'The published contract exposes a single entity, the Acumen ops-portal Spot. Its
+  schema cannot be derived: listSpots references #/definitions/SpotListSchema but the
+  document ships an EMPTY definitions object, so the reference dangles and no field-level
+  model exists to extract.'
+entity_count: 1
+schema_count: 0
+dangling_refs:
+- ref: '#/definitions/SpotListSchema'
+  referenced_by: 'paths./ops_portal/api/spots.get.responses.200.schema'
+  resolves: false
+  note: 'The single most consequential defect in this contract — the only success response
+    body in the API is undefined. A client cannot know the shape of a page of spots.'
+entities:
+- name: Spot
+  description: 'A "spot" record in the Acumen ops portal. Adonmo does not define the term
+    in the contract; from the surrounding product surface it is most consistent with a
+    screen placement / advertising slot, but the contract states nothing, so this is not
+    asserted as fact.'
+  identifier:
+    field: uuid
+    type: string (uuid, from the path template)
+    in: path
+    evidence: 'DELETE /ops_portal/api/spot/{uuid}'
+  known_attributes:
+  - name: status
+    evidence: 'exposed as a filter query parameter on listSpots; allowed values are not
+      enumerated'
+    type: string
+  operations:
+  - operationId: listSpots
+    method: GET
+    path: /ops_portal/api/spots
+  - operationId: deleteSpot
+    method: DELETE
+    path: /ops_portal/api/spot/{uuid}
+  schema_defined: false
+relationships: []
+relationships_note: 'No relationships can be derived. With one entity, zero defined
+  schemas and no id-reference fields anywhere in the document, there is no graph to
+  extract. This is an honest empty result, not an omission.'
+id_prefixes: []
+gaps:
+- 'definitions is an empty object while a $ref points into it.'
+- 'No request or response body schema is defined for any operation.'
+- 'The Spot entity is never described in prose in the contract.'

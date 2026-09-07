@@ -1,0 +1,53 @@
+generated: '2026-09-07'
+method: probed
+source: 'live unauthenticated responses from https://api.adonmo.com on 2026-09-07 plus a
+  search of every Adonmo documentation surface'
+api: Adonmo API
+limit_count: 0
+documented: false
+summary: 'Adonmo publishes no rate limits and returns no rate-limit headers. An agent has
+  neither a documented budget nor a runtime signal — it can only discover throttling by
+  being throttled.'
+limits: []
+response_headers:
+  observed: []
+  checked:
+  - X-RateLimit-Limit
+  - X-RateLimit-Remaining
+  - X-RateLimit-Reset
+  - RateLimit-Limit
+  - RateLimit-Remaining
+  - RateLimit-Reset
+  - Retry-After
+  result: 'None of these headers was present on any probed response.'
+exhaustion_status: unknown
+evidence:
+- url: 'https://api.adonmo.com/ops_portal/api/spots?page=1&page_size=1'
+  status: 400
+  headers_returned:
+  - date
+  - content-type
+  - content-length
+  - set-cookie
+  - server
+  - access-control-allow-origin
+  - vary
+  - cf-cache-status
+  - report-to
+  - nel
+  - cf-ray
+  - alt-svc
+  note: 'No rate-limit header of any kind. The host sits behind Cloudflare and an AWS
+    application load balancer, so an undocumented edge limit may exist, but nothing is
+    surfaced to the client.'
+- url: https://api.adonmo.com/apidocs/
+  status: 200
+  note: 'The Swagger UI documents no limits; the OpenAPI document contains no rate-limit
+    extension.'
+pagination_ceiling:
+  note: 'The only quantitative bound Adonmo publishes anywhere is a page_size maximum of
+    10000 on listSpots. That is a request-shape constraint, not a rate limit, and is
+    recorded here only so it is not mistaken for one.'
+  value: 10000
+  parameter: page_size
+  operation: listSpots

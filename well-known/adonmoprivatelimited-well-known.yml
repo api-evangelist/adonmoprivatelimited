@@ -1,0 +1,188 @@
+generated: '2026-09-07'
+method: probed
+source: live HTTP probes of every host this record knows (registrable domain + www, the
+  API baseURL host, the Acumen CMS product + console hosts, the self-serve booking host,
+  and the Dealzy brand host)
+note: 'Every named /.well-known/ path 404s or is absorbed by a single-page-app catch-all
+  on every Adonmo host. NO WellKnown or SecurityTxt pointer is emitted in apis.yml, because
+  this file records an absence, not a presence. book.adonmo.com and console.acumencms.com
+  answer HTTP 200 with an identical HTML application shell for every path probed — those
+  are SPA catch-alls, recorded as misses, not documents. Two hosts named in adonmo.com''s
+  own navigation, adserve.adonmo.com and posters.adonmo.com, do not resolve in DNS at all.'
+hosts:
+- host: adonmo.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: www.adonmo.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+- host: api.adonmo.com
+  note: 'API baseURL host. Returns a genuine JSON 404 envelope rather than an HTML shell,
+    so these are true negatives.'
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: acumencms.com
+  note: 'Acumen CMS marketing site (WordPress). Serves a real /llms.txt — saved to
+    llms/adonmoprivatelimited-llms.txt — but no /.well-known/ document.'
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: console.acumencms.com
+  note: 'SPA catch-all — HTTP 200 with the same 1,089-byte HTML application shell for
+    every path probed. Recorded as misses, NOT as served documents.'
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    result: spa-shell-not-a-document
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    result: spa-shell-not-a-document
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    result: spa-shell-not-a-document
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: null
+    result: spa-shell-not-a-document
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    result: spa-shell-not-a-document
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: null
+    result: spa-shell-not-a-document
+  - path: /.well-known/agent.json
+    status: 200
+    file: null
+    result: spa-shell-not-a-document
+- host: book.adonmo.com
+  note: 'SPA catch-all — HTTP 200 with an identical 237,015-byte HTML application shell
+    for every path probed. Recorded as misses, NOT as served documents.'
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    result: spa-shell-not-a-document
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    result: spa-shell-not-a-document
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    result: spa-shell-not-a-document
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    result: spa-shell-not-a-document
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: null
+    result: spa-shell-not-a-document
+  - path: /.well-known/agent.json
+    status: 200
+    file: null
+    result: spa-shell-not-a-document
+- host: dealzy.in
+  note: 'Second brand registered to Adonmo Private Limited.'
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: adserve.adonmo.com
+  note: 'Linked from adonmo.com navigation as the AdServe programmatic platform, but the
+    hostname does not resolve in DNS (NXDOMAIN).'
+  documents: []
+- host: posters.adonmo.com
+  note: 'Linked from adonmo.com navigation as Poster Frames, but the hostname does not
+    resolve in DNS (NXDOMAIN).'
+  documents: []
