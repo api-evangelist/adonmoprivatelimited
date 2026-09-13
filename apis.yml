@@ -18,6 +18,15 @@ created: '2026-09-07'
 modified: '2026-09-07'
 tags:
 - Advertising
+- Digital Out Of Home
+- Digital Signage
+- AdTech
+- Content Management
+- Marketing
+- India
+- Company
+tags_raw:
+- Advertising
 - Digital Out-of-Home
 - DOOH
 - Digital Signage
@@ -40,6 +49,10 @@ apis:
   baseURL: https://api.adonmo.com
   position: Producing
   tags:
+  - Advertising
+  - Digital Signage
+  - Digital Out Of Home
+  tags_raw:
   - Advertising
   - Digital Signage
   - DOOH
