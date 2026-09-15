@@ -1,14 +1,13 @@
 aid: adonmoprivatelimited
 name: Adonmo Private Limited
-description: 'Adonmo Private Limited (AdOnMo) is a Hyderabad, India based ambient digital
-  out-of-home (DOOH) advertising company, incorporated in 2016, that operates what it
-  describes as India''s largest ambient DOOH network — 66,000+ smart digital screens
-  across 27+ Indian cities in residential lobbies, corporate offices, gyms, malls and
-  transit environments, reaching a claimed 12M+ daily viewers. The company sells campaigns
-  through its AdServe programmatic platform and a self-serve booking portal, and it
-  operates the screens themselves with Acumen CMS, its digital-signage content management
-  product. Adonmo publishes a small first-party OpenAPI 3.0.0 contract, "Adonmo API",
-  from a Flasgger-backed Swagger UI on its production API host.'
+description: Adonmo Private Limited (AdOnMo) is a Hyderabad, India based ambient digital out-of-home (DOOH)
+  advertising company, incorporated in 2016, that operates what it describes as India's largest ambient
+  DOOH network — 66,000+ smart digital screens across 27+ Indian cities in residential lobbies, corporate
+  offices, gyms, malls and transit environments, reaching a claimed 12M+ daily viewers. The company sells
+  campaigns through its AdServe programmatic platform and a self-serve booking portal, and it operates
+  the screens themselves with Acumen CMS, its digital-signage content management product. Adonmo publishes
+  a small first-party OpenAPI 3.0.0 contract, "Adonmo API", from a Flasgger-backed Swagger UI on its production
+  API host.
 image: https://adonmo.com/icon-512.png
 url: https://raw.githubusercontent.com/api-evangelist/adonmoprivatelimited/refs/heads/main/apis.yml
 x-type: company
@@ -36,14 +35,13 @@ tags_raw:
 - India
 - Company
 apis:
-- aid: adonmoprivatelimited-adonmo-api
+- aid: adonmoprivatelimited:adonmoprivatelimited-adonmo-api
   name: Adonmo API
-  description: 'Adonmo''s common API for its portals and services, published as an OpenAPI
-    3.0.0 document behind a Flasgger Swagger UI at https://api.adonmo.com/apidocs/. The
-    publicly served contract exposes two operations against the Acumen ops-portal "spot"
-    resource — a paginated list and a delete. All operations require a bearer access
-    token; anonymous calls return HTTP 400 with an ``access_token is required`` error
-    envelope.'
+  description: Adonmo's common API for its portals and services, published as an OpenAPI 3.0.0 document
+    behind a Flasgger Swagger UI at https://api.adonmo.com/apidocs/. The publicly served contract exposes
+    two operations against the Acumen ops-portal "spot" resource — a paginated list and a delete. All
+    operations require a bearer access token; anonymous calls return HTTP 400 with an ``access_token is
+    required`` error envelope.
   humanURL: https://api.adonmo.com/apidocs/
   image: https://adonmo.com/icon-512.png
   baseURL: https://api.adonmo.com
