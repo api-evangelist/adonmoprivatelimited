@@ -35,30 +35,16 @@ tags_raw:
 - India
 - Company
 apis:
-- aid: adonmoprivatelimited:adonmoprivatelimited-adonmo-api
-  name: Adonmo API
-  description: Adonmo's common API for its portals and services, published as an OpenAPI 3.0.0 document
-    behind a Flasgger Swagger UI at https://api.adonmo.com/apidocs/. The publicly served contract exposes
-    two operations against the Acumen ops-portal "spot" resource — a paginated list and a delete. All
-    operations require a bearer access token; anonymous calls return HTTP 400 with an ``access_token is
-    required`` error envelope.
+- aid: adonmoprivatelimited:adonmoprivatelimited-acumen-api
+  name: Adonmo Private Limited Acumen API
+  description: The acumen API from Adonmo Private Limited — 2 operation(s) for acumen.
   humanURL: https://api.adonmo.com/apidocs/
-  image: https://adonmo.com/icon-512.png
   baseURL: https://api.adonmo.com
-  position: Producing
   tags:
-  - Advertising
-  - Digital Signage
-  - Digital Out Of Home
-  tags_raw:
-  - Advertising
-  - Digital Signage
-  - DOOH
+  - acumen
   properties:
   - type: OpenAPI
-    url: openapi/adonmoprivatelimited-adonmo-api.json
-  - type: Overlay
-    url: overlays/adonmoprivatelimited-adonmo-api-overlay.yaml
+    url: openapi/adonmoprivatelimited-acumen-api-openapi.yml
   - type: APIReference
     url: https://api.adonmo.com/apidocs/
   - type: Authentication
@@ -73,6 +59,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/adonmoprivatelimited-adonmo-api-overlay.yaml
 - type: Website
   url: https://adonmo.com/
 - type: DeveloperPortal
