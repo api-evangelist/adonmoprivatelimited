@@ -41,6 +41,8 @@ apis:
   humanURL: https://api.adonmo.com/apidocs/
   baseURL: https://api.adonmo.com
   tags:
+  - Acumen
+  tags_raw:
   - acumen
   properties:
   - type: OpenAPI
