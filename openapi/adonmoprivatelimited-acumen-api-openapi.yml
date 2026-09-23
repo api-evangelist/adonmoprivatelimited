@@ -1,0 +1,71 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: dev@adonmo.com
+    responsibleDeveloper: Adonmo Dev
+    responsibleOrganization: Adonmo
+    url: www.adonmo.com
+  description: Common API for Adonmo for most portals and services
+  termsOfService: https://www.adonmo.com/policies/privacy-policy.pdf
+  title: Adonmo Acumen API
+  version: 0.0.1
+tags:
+- name: acumen
+paths:
+  /ops_portal/api/spot/{uuid}:
+    delete:
+      consumes:
+      - application/json
+      operationId: deleteSpot
+      produces:
+      - application/json
+      responses:
+        '204':
+          description: OK
+      summary: Delete a spot record
+      tags:
+      - acumen
+  /ops_portal/api/spots:
+    get:
+      consumes:
+      - application/json
+      description: Returns a paginated list of spots
+      operationId: listSpots
+      parameters:
+      - description: Page number
+        in: query
+        name: page
+        required: true
+        schema:
+          minimum: 1
+          type: int
+      - description: Page size
+        in: query
+        name: page_size
+        required: true
+        schema:
+          maximum: 10000
+          minimum: 1
+          type: int
+      - description: Search query
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+      - description: Status
+        in: query
+        name: status
+        required: false
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: List of spot request records
+          schema:
+            $ref: '#/definitions/SpotListSchema'
+      summary: List spots
+      tags:
+      - acumen

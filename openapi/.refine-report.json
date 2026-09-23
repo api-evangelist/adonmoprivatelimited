@@ -1,0 +1,25 @@
+{
+  "provider": "adonmoprivatelimited",
+  "sources": [
+    "_original/adonmoprivatelimited-adonmo-api.json"
+  ],
+  "outputs": [
+    "adonmoprivatelimited-acumen-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [
+    "adonmoprivatelimited-adonmo-api.json: dangling $ref: #/definitions/SpotListSchema"
+  ],
+  "warnings": [],
+  "notes": [
+    "1 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "adonmoprivatelimited-adonmo-api.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "adonmoprivatelimited-adonmo-api.json: declared missing tag: acumen",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "_original/adonmoprivatelimited-adonmo-api_2.json: archived document superseded by a larger archived document",
+    "adonmoprivatelimited-acumen-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}
