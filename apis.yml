@@ -1,5 +1,5 @@
 aid: adonmoprivatelimited
-name: Adonmo Private Limited
+name: Adonmo
 description: Adonmo Private Limited (AdOnMo) is a Hyderabad, India based ambient digital out-of-home (DOOH)
   advertising company, incorporated in 2016, that operates what it describes as India's largest ambient
   DOOH network — 66,000+ smart digital screens across 27+ Indian cities in residential lobbies, corporate
@@ -112,3 +112,4 @@ x-enrichment:
   status: enriched
   artifacts_added: 19
   pass: local-v3
+x-legal-name: Adonmo Private Limited
