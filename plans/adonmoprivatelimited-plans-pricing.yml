@@ -39,3 +39,16 @@ related_surfaces:
   pricing_published: false
   note: 'A single-page application. Campaign plans are built behind the app rather than
     listed on a public rate card, so no tiers could be read without an account.'
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  units: []
+  plans:
+  - name: Platinum
+    access: other
+    model: hybrid
+    model_how: derived
+    units: []
+    periods: []
