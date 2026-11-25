@@ -90,26 +90,32 @@ Model Context Protocol servers that expose the API to agents.
 
 OpenAPI overlays, including conversational phrasing for each operation.
 
-- [Adonmoprivatelimited Adonmo Api Overlay](https://apis.io/overlays/adonmoprivatelimited/adonmoprivatelimited-adonmo-api-overlay/)
+- [Adonmo Adonmo Api Overlay](https://apis.io/overlays/adonmoprivatelimited/adonmoprivatelimited-adonmo-api-overlay/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Adonmo API Rules](https://apis.io/rules/adonmoprivatelimited/adonmoprivatelimited-rules/)
 
 #### Security (2)
 
 Authentication, trust centre, and vulnerability disclosure.
 
-- [Adonmoprivatelimited Authentication](https://apis.io/security/adonmoprivatelimited/adonmoprivatelimited-authentication/)
-- [Adonmoprivatelimited Domain Security](https://apis.io/security/adonmoprivatelimited/adonmoprivatelimited-domain-security/)
+- [Adonmo Authentication](https://apis.io/security/adonmoprivatelimited/adonmoprivatelimited-authentication/)
+- [Adonmo Domain Security](https://apis.io/security/adonmoprivatelimited/adonmoprivatelimited-domain-security/)
 
 #### Plans and pricing (1)
 
 Published plans, tiers and prices.
 
-- [Adonmoprivatelimited Plans Pricing](https://apis.io/plans/adonmoprivatelimited/adonmoprivatelimited-plans-pricing/)
+- [Adonmo Plans Pricing](https://apis.io/plans/adonmoprivatelimited/adonmoprivatelimited-plans-pricing/)
 
 #### Rate limits (1)
 
 Published request limits.
 
-- [Adonmoprivatelimited Rate Limits](https://apis.io/rate-limits/adonmoprivatelimited/adonmoprivatelimited-rate-limits/)
+- [Adonmo Rate Limits](https://apis.io/rate-limits/adonmoprivatelimited/adonmoprivatelimited-rate-limits/)
 
 ## Where to find this API
 
@@ -128,18 +134,18 @@ Links to the company's own pages. This repository publishes no copy of their spe
 
 ## API Evangelist rating
 
-**Kin Score 38.3** — thin · rubric 0.24.0 · scored 2026-10-17
+**Kin Score 39.8** — developing · rubric 0.28.1 · scored 2026-11-21
 
 | Facet | Score |
 |---|---|
 | Discoverability | 73.2 |
 | Contract quality | 34.9 |
-| Contract governance | 4.5 |
-| Operational transparency | 2.6 |
+| Contract governance | 18.2 |
+| Operational transparency | 4.8 |
 | Developer ergonomics | 47.0 |
-| Access clarity | 52.6 |
+| Access clarity | 55.3 |
 
-**Agent readiness 21.8** — agent-aware
+**Agent readiness 22.9** — agent-aware
 
 | Agent-readiness dimension | Result |
 |---|---|
@@ -162,8 +168,14 @@ Links to the company's own pages. This repository publishes no copy of their spe
 | Protected Resource Metadata | — |
 | Dynamic Client Registration | — |
 | Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+| MCP Tool Quality | na |
+| Onboarding Descriptor | — |
+| Dns Aid Index | na |
+| Markdown Negotiation | na |
 
-**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+**Regulatory alignment 18.6** — Horizontal (data, software, accessibility, platform)
 
 The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/adonmoprivatelimited/](https://apis.io/providers/adonmoprivatelimited/).
 
